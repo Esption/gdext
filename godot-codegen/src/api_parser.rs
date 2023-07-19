@@ -245,11 +245,12 @@ pub fn load_extension_api(watch: &mut godot_bindings::StopWatch) -> (ExtensionAp
     // For float/double inference, see:
     // * https://github.com/godotengine/godot-proposals/issues/892
     // * https://github.com/godotengine/godot-cpp/pull/728
-    #[cfg(feature = "double-precision")]
-    let build_config = "double_64"; // TODO infer this
-    #[cfg(not(feature = "double-precision"))]
-    let build_config = "float_64"; // TODO infer this
-
+    let build_config = match (cfg!(feature = "double-precision"), cfg!(feature = "bits32")) {
+        (true, true) => "double_32",
+        (true, false) => "double_64",
+        (false, true) => "float_32",
+        (false, false) => "float_64",
+    };
     // Use type inference, so we can accept both String (dynamically resolved) and &str (prebuilt).
     // #[allow]: as_ref() acts as impl AsRef<str>, but with conditional compilation
 
