@@ -15,6 +15,7 @@ codegen-full = ["godot-codegen/codegen-full"]
 double-precision = ["godot-codegen/double-precision"]
 custom-godot = ["godot-ffi/custom-godot", "godot-codegen/custom-godot"]
 threads = []
+bits32 = ["godot-codegen/bits32"]
 
 [dependencies]
 godot-ffi = { path = "../godot-ffi" }
