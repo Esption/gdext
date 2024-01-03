@@ -18,6 +18,7 @@ mod instance_id;
 mod onready;
 mod raw;
 mod traits;
+mod weak;
 
 pub(crate) mod rtti;
 
@@ -28,6 +29,7 @@ pub use instance_id::*;
 pub use onready::*;
 pub use raw::*;
 pub use traits::*;
+pub use weak::*;
 
 // Do not re-export rtti here.
 

@@ -434,6 +434,10 @@ impl<T: GodotClass> Gd<T> {
         // Do not increment ref-count; assumed to be return value from FFI.
         sys::ptr_then(object_ptr, |ptr| Gd::from_obj_sys_weak(ptr))
     }
+    #[doc(hidden)]
+    pub unsafe fn get_ffi(&self) -> &RawGd<T> {
+        &self.raw
+    }
 }
 
 /// _The methods in this impl block are only available for objects `T` that are manually managed,
